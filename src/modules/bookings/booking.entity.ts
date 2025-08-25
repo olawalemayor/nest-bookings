@@ -1,31 +1,38 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, Index } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  Index,
+} from "typeorm";
 
-export type ServiceType = 'MANICURE' | 'PEDICURE' | 'HAIRCUT';
+export type ServiceType = "MANICURE" | "PEDICURE" | "HAIRCUT";
 
-@Entity('bookings')
+@Entity("bookings")
 export class Booking {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn("uuid")
+  id!: string;
 
   @Column({ length: 80 })
-  clientName: string;
+  clientName!: string;
 
   @Column({ length: 16 })
-  clientPhone: string;
+  clientPhone!: string;
 
   @Index()
-  @Column({ type: 'timestamptz' })
-  startsAt: Date;
+  @Column()
+  startsAt!: Date;
 
-  @Column({ type: 'varchar', length: 16 })
-  service: ServiceType;
+  @Column({ type: "varchar", length: 16 })
+  service!: ServiceType;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ type: "text", nullable: true })
   notes?: string | null;
 
-  @CreateDateColumn({ type: 'timestamptz' })
-  createdAt: Date;
+  @CreateDateColumn()
+  createdAt!: Date;
 
-  @UpdateDateColumn({ type: 'timestamptz' })
-  updatedAt: Date;
+  @UpdateDateColumn()
+  updatedAt!: Date;
 }

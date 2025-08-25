@@ -1,20 +1,20 @@
-import { Controller, Get } from '@nestjs/common';
-import { HealthCheck, HealthCheckService } from '@nestjs/terminus';
+import { Controller, Get } from "@nestjs/common";
+import { HealthCheck, HealthCheckService } from "@nestjs/terminus";
 
 @Controller()
 export class HealthController {
   constructor(private health: HealthCheckService) {}
 
-  @Get('/health')
+  @Get("/health")
   @HealthCheck()
   check() {
     // Simple liveness; DB/Redis checks can be added with custom indicators
     return this.health.check([]);
   }
 
-  @Get('/metrics')
+  @Get("/metrics")
   metrics() {
     // Filled by MetricsMiddleware (sends content-type and body)
-    return 'OK';
+    return "OK";
   }
 }

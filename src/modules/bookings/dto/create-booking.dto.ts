@@ -1,22 +1,30 @@
-import { IsString, Length, Matches, IsIn, IsOptional, MaxLength, Validate } from 'class-validator';
-import { Type } from 'class-transformer';
-import { IsFutureWithLeadTime } from '../validators/is-future-with-leadtime.validator';
+import {
+  IsString,
+  Length,
+  Matches,
+  IsIn,
+  IsOptional,
+  MaxLength,
+  Validate,
+} from "class-validator";
+import { Type } from "class-transformer";
+import { IsFutureWithLeadTime } from "../validators/is-future-with-leadtime.validator";
 
 export class CreateBookingDto {
   @IsString()
   @Length(2, 80)
-  clientName: string;
+  clientName!: string;
 
   @IsString()
-  @Matches(/^\+[1-9]\d{1,14}$/, { message: 'clientPhone must be E.164' })
-  clientPhone: string;
+  @Matches(/^\+[1-9]\d{1,14}$/, { message: "clientPhone must be E.164" })
+  clientPhone!: string;
 
-  @IsIn(['MANICURE', 'PEDICURE', 'HAIRCUT'])
-  service: 'MANICURE' | 'PEDICURE' | 'HAIRCUT';
+  @IsIn(["MANICURE", "PEDICURE", "HAIRCUT"])
+  service!: "MANICURE" | "PEDICURE" | "HAIRCUT";
 
   @Type(() => Date)
   @Validate(IsFutureWithLeadTime, [15])
-  startsAt: Date;
+  startsAt!: Date;
 
   @IsOptional()
   @IsString()

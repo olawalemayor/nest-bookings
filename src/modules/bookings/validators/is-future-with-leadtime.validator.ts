@@ -1,9 +1,16 @@
-import { registerDecorator, ValidationOptions, ValidationArguments } from 'class-validator';
+import {
+  registerDecorator,
+  ValidationOptions,
+  ValidationArguments,
+} from "class-validator";
 
-export function IsFutureWithLeadTime(minutes: number, options?: ValidationOptions) {
+export function IsFutureWithLeadTime(
+  minutes: number,
+  options?: ValidationOptions
+) {
   return function (object: Object, propertyName: string) {
     registerDecorator({
-      name: 'isFutureWithLeadTime',
+      name: "isFutureWithLeadTime",
       target: object.constructor,
       propertyName,
       constraints: [minutes],
